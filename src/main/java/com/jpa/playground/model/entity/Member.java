@@ -27,7 +27,12 @@ public class Member {
     }
 
     public void setTeam(Team team) {
+        // 사실 기존 팀과 관계를 제거해야한다
+        if(this.team != null) {
+            this.team.getMembers().remove(this);
+        }
         this.team = team;
+        team.getMembers().add(this);    // 양방향을 교차로 세팅할 수 있도록
     }
 
     public String getId() {
